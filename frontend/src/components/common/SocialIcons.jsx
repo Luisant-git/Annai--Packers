@@ -16,26 +16,10 @@ export function InstagramIcon(props) {
   )
 }
 
-export function TwitterIcon(props) {
-  return (
-    <svg {...base} {...props}>
-      <path d="M18.9 2H22l-7.2 8.24L23.3 22h-6.62l-5.18-6.77L5.55 22H2.42l7.7-8.8L1.5 2h6.79l4.68 6.19L18.9 2Zm-1.16 18h1.73L7.35 3.9H5.5L17.74 20Z" />
-    </svg>
-  )
-}
-
 export function LinkedinIcon(props) {
   return (
     <svg {...base} {...props}>
       <path d="M6.94 5a2 2 0 1 1-4-.02 2 2 0 0 1 4 .02ZM7 8.48H3V21h4V8.48Zm6.32 0H9.35V21h3.94v-6.57c0-3.66 4.77-3.96 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48Z" />
-    </svg>
-  )
-}
-
-export function YoutubeIcon(props) {
-  return (
-    <svg {...base} {...props}>
-      <path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81ZM9.6 15.5V8.5l6.27 3.5-6.27 3.5Z" />
     </svg>
   )
 }

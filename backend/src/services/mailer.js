@@ -1,4 +1,6 @@
 const nodemailer = require('nodemailer')
+const fs = require('fs')
+const path = require('path')
 const { mail } = require('../config/env')
 const {
   enquiryCustomerTemplate,
@@ -27,14 +29,38 @@ async function sendMail({ to, subject, html, replyTo }) {
     return
   }
 
+  // prepare inline logo attachment (if present)
+  const attachments = []
   try {
-    await getTransporter().sendMail({
+    const logoPath = path.join(__dirname, '..', 'assets', 'logo-email.png')
+    if (fs.existsSync(logoPath)) {
+      const logoBuffer = fs.readFileSync(logoPath)
+      attachments.push({
+        filename: 'logo-email.png',
+        content: logoBuffer,
+        contentType: 'image/png',
+        cid: 'annai_logo',
+        contentDisposition: 'inline',
+      })
+    } else {
+      console.warn(`[mailer] logo not found at ${logoPath}`)
+    }
+  } catch (e) {
+    console.warn('[mailer] failed to read logo file for embedding:', e.message)
+  }
+
+  try {
+    const info = await getTransporter().sendMail({
       from: mail.from,
       to,
       subject,
       html,
+      attachments,
       replyTo,
     })
+
+    // Helpful debug/log: messageId and accepted recipients
+    console.info('[mailer] message sent:', { messageId: info.messageId, accepted: info.accepted })
   } catch (err) {
     console.error('[mailer] Failed to send email:', err.message)
   }
@@ -43,7 +69,7 @@ async function sendMail({ to, subject, html, replyTo }) {
 function sendEnquiryNotification(enquiry) {
   return sendMail({
     to: mail.to,
-    subject: `New Enquiry from ${enquiry.name}`,
+    subject: `📩 New Contact Enquiry – Annai Packers & Movers`,
     html: enquiryAdminTemplate(enquiry),
     replyTo: enquiry.email,
   })
@@ -60,7 +86,7 @@ function sendEnquiryConfirmation(enquiry) {
 function sendQuoteNotification(quote) {
   return sendMail({
     to: mail.to,
-    subject: `New Quote Request from ${quote.name}`,
+    subject: `📦 New Quote Request Received – Annai Packers & Movers`,
     html: quoteAdminTemplate(quote),
     replyTo: quote.email,
   })

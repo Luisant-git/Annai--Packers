@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 import { COMPANY, FOOTER_LINKS, SERVICE_TYPES } from '@/utils/constants'
+import { getContactHref, isWaMe } from '@/utils/contactLinks'
 import logoDark from '@/assets/logo-dark.webp'
 
 export default function Footer() {
@@ -53,11 +54,19 @@ export default function Footer() {
             <li className="flex items-start gap-3">
               <Phone size={16} className="mt-0.5 shrink-0 text-accent-400" />
               <span className="flex flex-col gap-1">
-                {COMPANY.phones.map((p) => (
-                  <a key={p.raw} href={`tel:${p.raw}`} className="hover:text-accent-400">
-                    {p.display}
-                  </a>
-                ))}
+                {COMPANY.phones.map((p) => {
+                  const href = getContactHref(p.raw)
+                  return (
+                    <a
+                      key={p.raw}
+                      href={href}
+                      className="hover:text-accent-400"
+                      {...(isWaMe(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    >
+                      {p.display}
+                    </a>
+                  )
+                })}
               </span>
             </li>
             <li className="flex items-center gap-3">

@@ -75,9 +75,10 @@ export default function ServiceDetails() {
               </div>
 
               <a
-                href={`tel:${COMPANY.phoneRaw}`}
+                href={getContactHref(COMPANY.phoneRaw)}
                 className="flex items-center justify-center gap-2 rounded-2xl bg-brand-900 py-4 text-sm font-semibold text-white transition-colors hover:bg-brand-800"
                 data-aos="fade-left"
+                {...(isWaMe(getContactHref(COMPANY.phoneRaw)) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               >
                 <PhoneCall size={16} /> Call {COMPANY.phone}
               </a>

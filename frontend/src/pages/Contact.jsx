@@ -5,6 +5,7 @@ import PageHero from '@/components/common/PageHero'
 import ContactForm from '@/components/forms/ContactForm'
 import QuoteForm from '@/components/forms/QuoteForm'
 import { COMPANY } from '@/utils/constants'
+import { getContactHref, isWaMe } from '@/utils/contactLinks'
 
 const INFO_CARDS = [
   { icon: MapPin, label: 'Address', value: COMPANY.address },
@@ -29,20 +30,9 @@ export default function Contact() {
         compact
       />
 
-      <section className="py-24">
-        <div className="container-page grid grid-cols-1 gap-12 lg:grid-cols-5">
+      <section className="py-20">
+        <div className="container-page grid grid-cols-1 gap-10 lg:grid-cols-5">
           <div className="lg:col-span-2" data-aos="fade-right">
-            <ul className="mb-6 flex flex-wrap gap-2">
-              {COMPANY.taglineItems.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-
             <div className="space-y-5">
               {INFO_CARDS.map((card) => (
                 <div key={card.label} className="flex items-start gap-4 rounded-2xl border border-brand-100 bg-white p-6 shadow-soft">
@@ -53,15 +43,19 @@ export default function Contact() {
                     <p className="text-xs font-semibold uppercase tracking-wide text-brand-500">{card.label}</p>
                     {card.values ? (
                       <div className="mt-1 flex flex-col gap-0.5">
-                        {card.values.map((p) => (
-                          <a
-                            key={p.raw}
-                            href={`tel:${p.raw}`}
-                            className="text-sm font-medium text-brand-900 hover:text-accent-600"
-                          >
-                            {p.display}
-                          </a>
-                        ))}
+                        {card.values.map((p) => {
+                          const href = getContactHref(p.raw)
+                          return (
+                            <a
+                              key={p.raw}
+                              href={href}
+                              className="text-sm font-medium text-brand-900 hover:text-accent-600"
+                              {...(isWaMe(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                            >
+                              {p.display}
+                            </a>
+                          )
+                        })}
                       </div>
                     ) : card.href ? (
                       <a href={card.href} className="mt-1 block text-sm font-medium text-brand-900 hover:text-accent-600">

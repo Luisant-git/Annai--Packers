@@ -154,7 +154,13 @@ export default function Faq() {
                     </p>
 
                     <div className="mt-6 flex flex-col gap-3">
-                      <Button href={`tel:${COMPANY.phoneRaw}`} icon={PhoneCall} iconPosition="left" className="w-full">
+                      <Button
+                        href={getContactHref(COMPANY.phoneRaw)}
+                        icon={PhoneCall}
+                        iconPosition="left"
+                        className="w-full"
+                        {...(isWaMe(getContactHref(COMPANY.phoneRaw)) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      >
                         Call {COMPANY.phone}
                       </Button>
                       <Button to="/contact" variant="outline" className="w-full">

@@ -1,6 +1,7 @@
 import { PhoneCall } from 'lucide-react'
 import Button from '@/components/common/Button'
 import { COMPANY } from '@/utils/constants'
+import { getContactHref, isWaMe } from '@/utils/contactLinks'
 
 export default function CtaBand() {
   return (
@@ -21,7 +22,14 @@ export default function CtaBand() {
           <Button to="/contact" size="lg">
             Get Free Quote
           </Button>
-          <Button href={`tel:${COMPANY.phoneRaw}`} variant="outline" size="lg" icon={PhoneCall} iconPosition="left">
+          <Button
+            href={getContactHref(COMPANY.phoneRaw)}
+            variant="outline"
+            size="lg"
+            icon={PhoneCall}
+            iconPosition="left"
+            {...(isWaMe(getContactHref(COMPANY.phoneRaw)) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          >
             Call Us Now
           </Button>
         </div>

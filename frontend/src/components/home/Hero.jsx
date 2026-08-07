@@ -6,6 +6,7 @@ import heroBanner1 from '@/assets/hero-banner1.webp'
 import heroBanner2 from '@/assets/hero-banner2.webp'
 import heroBanner3 from '@/assets/hero-banner3.webp'
 import { COMPANY } from '@/utils/constants'
+import { getContactHref, isWaMe } from '@/utils/contactLinks'
 
 const SLIDES = [heroBanner1, heroBanner2, heroBanner3]
 const SLIDE_DURATION = 5000
@@ -97,7 +98,14 @@ export default function Hero() {
           <Button to="/contact" size="lg">
             Get Free Quote
           </Button>
-          <Button href={`tel:${COMPANY.phoneRaw}`} variant="outline" size="lg" icon={PhoneCall} iconPosition="left">
+          <Button
+            href={getContactHref(COMPANY.phoneRaw)}
+            variant="outline"
+            size="lg"
+            icon={PhoneCall}
+            iconPosition="left"
+            {...(isWaMe(getContactHref(COMPANY.phoneRaw)) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          >
             {COMPANY.phone}
           </Button>
         </motion.div>

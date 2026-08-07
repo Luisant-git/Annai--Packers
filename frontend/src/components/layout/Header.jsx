@@ -3,6 +3,7 @@ import { NavLink, Link, useLocation } from 'react-router-dom'
 import { Menu, X, Phone, PhoneCall, Mail } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { COMPANY, NAV_LINKS } from '@/utils/constants'
+import { getContactHref, isWaMe } from '@/utils/contactLinks'
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from '@/components/common/SocialIcons'
 import Button from '@/components/common/Button'
 import logo from '@/assets/logo.webp'
@@ -24,14 +25,21 @@ function TopContactBar() {
           </a>
           <div className="flex items-center gap-2">
             <Phone size={13} className="shrink-0 text-accent-400" />
-            {COMPANY.phones.map((p, i) => (
-              <span key={p.raw} className="flex items-center gap-2">
-                <a href={`tel:${p.raw}`} className="transition-colors hover:text-accent-400">
-                  {p.display}
-                </a>
-                {i < COMPANY.phones.length - 1 && <span className="text-brand-500">/</span>}
-              </span>
-            ))}
+            {COMPANY.phones.map((p, i) => {
+              const href = getContactHref(p.raw)
+              return (
+                <span key={p.raw} className="flex items-center gap-2">
+                  <a
+                    href={href}
+                    className="transition-colors hover:text-accent-400"
+                    {...(isWaMe(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  >
+                    {p.display}
+                  </a>
+                  {i < COMPANY.phones.length - 1 && <span className="text-brand-500">/</span>}
+                </span>
+              )
+            })}
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -140,8 +148,9 @@ export default function Header() {
               ))}
               <div className="mt-3 flex flex-col gap-3">
                 <a
-                  href={`tel:${COMPANY.phoneRaw}`}
+                  href={getContactHref(COMPANY.phoneRaw)}
                   className="flex items-center justify-center gap-2 rounded-full border-2 border-brand-900 py-3 text-sm font-semibold text-brand-900"
+                  {...(isWaMe(getContactHref(COMPANY.phoneRaw)) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 >
                   <Phone size={16} /> {COMPANY.phone}
                 </a>

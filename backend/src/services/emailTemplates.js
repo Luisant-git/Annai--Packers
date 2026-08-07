@@ -1,5 +1,4 @@
-const fs = require('fs')
-const path = require('path')
+// templates: image is embedded via CID by the mailer
 
 const BRAND = {
   primary: '#f68b0c',
@@ -8,7 +7,7 @@ const BRAND = {
   bg: '#f4f7fb',
 }
 
-const LOGO_BASE64 = fs.readFileSync(path.join(__dirname, '..', 'assets', 'logo-email.png')).toString('base64')
+// Use CID-based image embedding handled by the mailer. Do not inline local file paths here.
 
 function esc(value) {
   return String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -34,7 +33,7 @@ function badge(label) {
   )}</span>`
 }
 
-function layout({ heading, intro, rowsHtml, badges = [], nextSteps = [] }) {
+function layout({ heading, intro, rowsHtml, badges = [], nextSteps = [], footerNote = '' }) {
   const year = new Date().getFullYear()
 
   return `<!doctype html>
@@ -68,7 +67,7 @@ function layout({ heading, intro, rowsHtml, badges = [], nextSteps = [] }) {
           <tr>
             <td class="email-header" style="padding:36px 28px 30px;background:${BRAND.dark};text-align:center;">
               <img
-                src="data:image/png;base64,${LOGO_BASE64}"
+                src="cid:annai_logo"
                 width="220"
                 alt="Annai Packers & Movers"
                 class="email-logo"
@@ -102,6 +101,14 @@ function layout({ heading, intro, rowsHtml, badges = [], nextSteps = [] }) {
               </div>
             </td>
           </tr>
+
+          ${footerNote ? `<tr>
+            <td class="email-section" style="padding:18px 28px 0;">
+              <div style="border-radius:10px;background:rgba(13,44,70,0.03);padding:12px 14px;color:${BRAND.dark};font-size:13px;">
+                ${footerNote}
+              </div>
+            </td>
+          </tr>` : ''}
 
           ${
             nextSteps.length
@@ -192,21 +199,47 @@ function quoteCustomerTemplate(quote) {
 }
 
 function quoteAdminTemplate(quote) {
+  const customerRows = [row('Name', quote.name), row('Email', quote.email), row('Phone', quote.phone)].join('')
+  const movingRows = [
+    row('Moving From', quote.movingFrom),
+    row('Moving To', quote.movingTo),
+    row('Preferred Date', quote.moveDate),
+    row('Service Type', quote.serviceType),
+    row('Property Type', quote.propertyType),
+    row('Estimated Size', quote.estimatedSize),
+  ].join('')
+  const additional = row('Additional Requirements', quote.message, true)
+
+  const rowsHtml = `
+    <tr>
+      <td colspan="2" style="padding:8px 14px 0 14px;">
+        <strong style="font-size:14px;color:${BRAND.dark};">Customer Details</strong>
+      </td>
+    </tr>
+    ${customerRows}
+    <tr><td colspan="2" style="height:8px"></td></tr>
+    <tr>
+      <td colspan="2" style="padding:8px 14px 0 14px;">
+        <strong style="font-size:14px;color:${BRAND.dark};">Moving Details</strong>
+      </td>
+    </tr>
+    ${movingRows}
+    <tr><td colspan="2" style="height:8px"></td></tr>
+    <tr>
+      <td colspan="2" style="padding:8px 14px 0 14px;">
+        <strong style="font-size:14px;color:${BRAND.dark};">Additional Requirements</strong>
+      </td>
+    </tr>
+    ${additional}
+  `
+
   return layout({
     heading: 'New Quote Request Received',
-    intro: 'A customer has submitted a new quote request through the website.',
-    rowsHtml: [
-      row('Name', quote.name),
-      row('Email', quote.email),
-      row('Phone', quote.phone),
-      row('Moving From', quote.movingFrom),
-      row('Moving To', quote.movingTo),
-      row('Service Type', quote.serviceType),
-      row('Property Type', quote.propertyType),
-      row('Preferred Date', quote.moveDate),
-      row('Estimated Size', quote.estimatedSize),
-      row('Additional Details', quote.message, true),
-    ].join(''),
+    intro:
+      'A new quotation request has been submitted through the Annai Packers &amp; Movers website. Please review the customer details below and contact the customer as soon as possible.',
+    rowsHtml,
+    footerNote:
+      'Please contact the customer as soon as possible to provide a quotation and schedule the relocation.',
   })
 }
 

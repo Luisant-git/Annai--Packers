@@ -22,10 +22,17 @@ function TopContactBar() {
             <Mail size={13} className="text-accent-400" />
             {COMPANY.email}
           </a>
-          <a href={`tel:${COMPANY.phoneRaw}`} className="flex items-center gap-2 transition-colors hover:text-accent-400">
-            <Phone size={13} className="text-accent-400" />
-            {COMPANY.phone}
-          </a>
+          <div className="flex items-center gap-2">
+            <Phone size={13} className="shrink-0 text-accent-400" />
+            {COMPANY.phones.map((p, i) => (
+              <span key={p.raw} className="flex items-center gap-2">
+                <a href={`tel:${p.raw}`} className="transition-colors hover:text-accent-400">
+                  {p.display}
+                </a>
+                {i < COMPANY.phones.length - 1 && <span className="text-brand-500">/</span>}
+              </span>
+            ))}
+          </div>
         </div>
         <div className="flex items-center gap-3">
           {TOP_BAR_SOCIALS.map(({ key, Icon }) => (

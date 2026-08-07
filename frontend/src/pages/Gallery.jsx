@@ -14,6 +14,7 @@ export default function Gallery() {
         title="Our Gallery"
         subtitle="A closer look at how our team packs, moves and delivers with care."
         breadcrumb={[{ label: 'Gallery' }]}
+        compact
       />
 
       <section className="py-24">

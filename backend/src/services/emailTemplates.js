@@ -1,9 +1,14 @@
+const fs = require('fs')
+const path = require('path')
+
 const BRAND = {
   primary: '#f68b0c',
   dark: '#0d2c46',
   muted: '#64748b',
   bg: '#f4f7fb',
 }
+
+const LOGO_BASE64 = fs.readFileSync(path.join(__dirname, '..', 'assets', 'logo-email.png')).toString('base64')
 
 function esc(value) {
   return String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -29,7 +34,7 @@ function badge(label) {
   )}</span>`
 }
 
-function layout({ heading, intro, rowsHtml, badges = [], nextSteps = [], footerNote }) {
+function layout({ heading, intro, rowsHtml, badges = [], nextSteps = [] }) {
   const year = new Date().getFullYear()
 
   return `<!doctype html>
@@ -37,48 +42,56 @@ function layout({ heading, intro, rowsHtml, badges = [], nextSteps = [], footerN
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="supported-color-schemes" content="light" />
   <title>Annai Packers &amp; Movers</title>
+  <style>
+    @media (max-width: 620px) {
+      .email-card { width: 100% !important; border-radius: 0 !important; }
+      .email-header { padding: 26px 20px 22px !important; }
+      .email-logo { width: 170px !important; }
+      .email-section { padding-left: 20px !important; padding-right: 20px !important; }
+      .email-heading { font-size: 17px !important; }
+    }
+  </style>
 </head>
 <body style="margin:0;padding:0;background:${BRAND.bg};font-family:Inter,Segoe UI,Arial,sans-serif;color:${BRAND.dark};">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.bg};padding:32px 12px;">
     <tr>
       <td align="center">
-        <table width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 16px 40px rgba(13,44,70,0.12);">
+        <table class="email-card" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 16px 40px rgba(13,44,70,0.12);">
 
           <tr>
-            <td style="height:6px;background:linear-gradient(90deg, ${BRAND.primary}, #ffb64f);"></td>
+            <td style="height:4px;background:linear-gradient(90deg, ${BRAND.primary}, #ffb64f);"></td>
           </tr>
 
           <tr>
-            <td style="padding:24px 28px 8px;">
-              <table cellpadding="0" cellspacing="0" role="presentation">
-                <tr>
-                  <td style="padding-right:12px;vertical-align:middle;">
-                    <div style="width:42px;height:42px;border-radius:12px;background:${BRAND.dark};display:flex;align-items:center;justify-content:center;">
-                      <span style="color:${BRAND.primary};font-weight:900;font-size:18px;font-family:Georgia,serif;">A</span>
-                    </div>
-                  </td>
-                  <td style="vertical-align:middle;">
-                    <div style="font-size:17px;font-weight:800;color:${BRAND.dark};">Annai Packers &amp; Movers</div>
-                    <div style="margin-top:2px;font-size:12px;color:${BRAND.muted};">Safe. Secure. Stress-Free.</div>
-                  </td>
-                </tr>
-              </table>
+            <td class="email-header" style="padding:36px 28px 30px;background:${BRAND.dark};text-align:center;">
+              <img
+                src="data:image/png;base64,${LOGO_BASE64}"
+                width="220"
+                alt="Annai Packers & Movers"
+                class="email-logo"
+                style="display:inline-block;width:220px;max-width:70%;height:auto;"
+              />
+              <p style="margin:16px 0 0;font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.65);">
+                Safe &bull; Secure &bull; Stress-Free
+              </p>
             </td>
           </tr>
 
           <tr>
-            <td style="padding:14px 28px 0;">
-              <div style="border-radius:14px;background:linear-gradient(135deg, rgba(246,139,12,0.12), rgba(13,44,70,0.03));border:1px solid rgba(13,44,70,0.06);padding:18px;">
-                <div style="font-size:19px;font-weight:800;color:${BRAND.dark};">${esc(heading)}</div>
-                <div style="margin-top:8px;font-size:13px;line-height:1.6;color:${BRAND.muted};">${intro}</div>
-                ${badges.length ? `<div style="margin-top:14px;">${badges.map(badge).join('')}</div>` : ''}
+            <td class="email-section" style="padding:28px 28px 0;">
+              <div style="border-radius:14px;background:linear-gradient(135deg, rgba(246,139,12,0.12), rgba(13,44,70,0.03));border:1px solid rgba(13,44,70,0.06);padding:20px;">
+                <div class="email-heading" style="font-size:19px;font-weight:800;line-height:1.35;color:${BRAND.dark};">${esc(heading)}</div>
+                <div style="margin-top:10px;font-size:13.5px;line-height:1.7;color:${BRAND.muted};">${intro}</div>
+                ${badges.length ? `<div style="margin-top:16px;">${badges.map(badge).join('')}</div>` : ''}
               </div>
             </td>
           </tr>
 
           <tr>
-            <td style="padding:18px 28px 0;">
+            <td class="email-section" style="padding:20px 28px 0;">
               <div style="border-radius:14px;border:1px solid rgba(13,44,70,0.1);overflow:hidden;">
                 <div style="padding:12px 14px;background:rgba(13,44,70,0.03);font-weight:800;color:${BRAND.dark};font-size:12.5px;">
                   Details
@@ -93,10 +106,10 @@ function layout({ heading, intro, rowsHtml, badges = [], nextSteps = [], footerN
           ${
             nextSteps.length
               ? `<tr>
-            <td style="padding:18px 28px 0;">
-              <div style="border-radius:14px;border:1px dashed rgba(246,139,12,0.5);background:rgba(246,139,12,0.06);padding:14px 16px;">
+            <td class="email-section" style="padding:20px 28px 0;">
+              <div style="border-radius:14px;border:1px dashed rgba(246,139,12,0.5);background:rgba(246,139,12,0.06);padding:16px 18px;">
                 <div style="font-weight:800;color:${BRAND.dark};font-size:12.5px;">What happens next?</div>
-                <ul style="margin:10px 0 0 18px;padding:0;color:${BRAND.muted};font-size:12.5px;line-height:1.7;">
+                <ul style="margin:10px 0 0 18px;padding:0;color:${BRAND.muted};font-size:12.5px;line-height:1.8;">
                   ${nextSteps.map((step) => `<li>${esc(step)}</li>`).join('')}
                 </ul>
               </div>
@@ -106,10 +119,11 @@ function layout({ heading, intro, rowsHtml, badges = [], nextSteps = [], footerN
           }
 
           <tr>
-            <td style="padding:20px 28px 24px;">
-              <div style="height:1px;background:rgba(13,44,70,0.08);margin:8px 0 16px;"></div>
-              <div style="font-size:11.5px;color:${BRAND.muted};text-align:center;line-height:1.6;">
-                &copy; ${year} Annai Packers &amp; Movers${footerNote ? `<br/>${footerNote}` : ''}
+            <td class="email-section" style="padding:24px 28px 28px;">
+              <div style="height:1px;background:rgba(13,44,70,0.08);margin:8px 0 18px;"></div>
+              <div style="font-size:11.5px;color:${BRAND.muted};text-align:center;line-height:1.7;">
+                &copy; ${year} Annai Packers &amp; Movers<br/>
+                Coimbatore &bull; Tamil Nadu &bull; India
               </div>
             </td>
           </tr>
@@ -137,7 +151,6 @@ function enquiryCustomerTemplate(enquiry) {
       'A specialist reaches out with guidance or an estimate',
       'We schedule a free site survey if needed',
     ],
-    footerNote: 'You received this email because you submitted an enquiry on our website.',
   })
 }
 
@@ -175,14 +188,13 @@ function quoteCustomerTemplate(quote) {
       'You receive a transparent, itemised quote',
       'Our crew arrives on schedule for packing and loading',
     ],
-    footerNote: 'You received this email because you requested a quote on our website.',
   })
 }
 
 function quoteAdminTemplate(quote) {
   return layout({
-    heading: 'New Quote Request',
-    intro: 'A new quote request was submitted on the website.',
+    heading: 'New Quote Request Received',
+    intro: 'A customer has submitted a new quote request through the website.',
     rowsHtml: [
       row('Name', quote.name),
       row('Email', quote.email),

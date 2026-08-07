@@ -14,6 +14,8 @@ import {
   Package,
   ClipboardList,
   FileCheck2,
+  Award,
+  Star,
 } from 'lucide-react'
 
 const ICON_MAP = {
@@ -32,6 +34,8 @@ const ICON_MAP = {
   Package,
   ClipboardList,
   FileCheck2,
+  Award,
+  Star,
 }
 
 export const getIcon = (name) => ICON_MAP[name] || Package

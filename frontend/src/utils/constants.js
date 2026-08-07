@@ -1,25 +1,33 @@
+const ADDRESS = '17/1, Devi Poorani Nagar, Kalapatti, Coimbatore – 641048'
+
 export const COMPANY = {
   name: 'Annai Packers & Movers',
   shortName: 'Annai Packers',
   tagline: 'Safe. Secure. Stress-Free.',
-  phone: '+91 98765 43210',
-  phoneRaw: '+919876543210',
-  whatsapp: '+919876543210',
-  email: 'info@annaipackersmovers.com',
-  address: 'No. 12, Anna Salai, Chennai, Tamil Nadu 600002, India',
+  taglineItems: [
+    'House Hold & Office Shifting',
+    'Industrial Shifting',
+    'Export Wooden Box Packing',
+    'All Over India Services',
+  ],
+  // Primary number — used for all single click-to-call buttons (Header, Hero, CTA bands, floating action).
+  phone: '+91 89408 87555',
+  phoneRaw: '+918940887555',
+  // Full list — used wherever all numbers should be visible (Top Bar, Footer, Contact page).
+  phones: [
+    { display: '+91 89408 87555', raw: '+918940887555' },
+    { display: '+91 87541 27755', raw: '+918754127755' },
+    { display: '+91 94872 17415', raw: '+919487217415' },
+  ],
+  whatsapp: '+918940887555',
+  email: 'annaipackersrini56@gmail.com',
+  address: ADDRESS,
   hours: 'Mon - Sun: 8:00 AM - 9:00 PM',
-  mapEmbedUrl: `https://www.google.com/maps?q=${encodeURIComponent(
-    'No. 12, Anna Salai, Chennai, Tamil Nadu 600002, India'
-  )}&output=embed`,
-  googleReviewsUrl:
-    'https://www.google.com/maps/search/?api=1&query=Annai+Packers+%26+Movers+Chennai',
-  googleRating: 4.8,
+  mapEmbedUrl: `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`,
   social: {
     facebook: 'https://facebook.com/',
     instagram: 'https://instagram.com/',
-    twitter: 'https://twitter.com/',
     linkedin: 'https://linkedin.com/',
-    youtube: 'https://youtube.com/',
   },
   founded: 2009,
 }
@@ -45,10 +53,10 @@ export const FOOTER_LINKS = {
 }
 
 export const TRUST_STATS = [
-  { label: 'Years of Experience', value: 15, suffix: '+' },
-  { label: 'Successful Moves', value: 12000, suffix: '+' },
-  { label: 'Cities Covered', value: 120, suffix: '+' },
-  { label: 'Customer Rating', value: 4.8, suffix: '/5' },
+  { label: 'Years of Experience', value: 15, suffix: '+', icon: 'Award' },
+  { label: 'Successful Moves', value: 12000, suffix: '+', icon: 'Truck' },
+  { label: 'Cities Covered', value: 120, suffix: '+', icon: 'MapPin' },
+  { label: 'Customer Rating', value: 4.8, suffix: '/5', icon: 'Star' },
 ]
 
 export const WHY_CHOOSE_US = [

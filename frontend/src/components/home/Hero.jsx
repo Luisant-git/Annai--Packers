@@ -81,7 +81,14 @@ export default function Hero() {
           Packing & Moving, <span className="text-accent-400">Made Effortless.</span>
         </motion.h1>
 
-        <motion.p variants={itemVariants} className="mt-6 max-w-xl text-lg leading-relaxed text-brand-100">
+        <motion.p
+          variants={itemVariants}
+          className="mt-4 max-w-xl text-sm font-semibold uppercase tracking-wide text-accent-300"
+        >
+          {COMPANY.taglineItems.join('  •  ')}
+        </motion.p>
+
+        <motion.p variants={itemVariants} className="mt-4 max-w-xl text-lg leading-relaxed text-brand-100">
           {COMPANY.tagline} From homes to offices, across the city or across the world &mdash; our trained
           professionals handle every move with precision and care.
         </motion.p>

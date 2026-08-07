@@ -37,6 +37,7 @@ export default function About() {
         title="About Annai Packers & Movers"
         subtitle="Fifteen years of building trust, one move at a time."
         breadcrumb={[{ label: 'About Us' }]}
+        compact
       />
 
       <section className="py-24">

@@ -8,7 +8,7 @@ import { COMPANY } from '@/utils/constants'
 
 const INFO_CARDS = [
   { icon: MapPin, label: 'Address', value: COMPANY.address },
-  { icon: Phone, label: 'Phone', value: COMPANY.phone, href: `tel:${COMPANY.phoneRaw}` },
+  { icon: Phone, label: 'Phone', values: COMPANY.phones },
   { icon: Mail, label: 'Email', value: COMPANY.email, href: `mailto:${COMPANY.email}` },
   { icon: Clock, label: 'Working Hours', value: COMPANY.hours },
 ]
@@ -26,11 +26,23 @@ export default function Contact() {
         title="Contact Us"
         subtitle="Have a question or ready to move? We're here to help."
         breadcrumb={[{ label: 'Contact Us' }]}
+        compact
       />
 
       <section className="py-24">
         <div className="container-page grid grid-cols-1 gap-12 lg:grid-cols-5">
           <div className="lg:col-span-2" data-aos="fade-right">
+            <ul className="mb-6 flex flex-wrap gap-2">
+              {COMPANY.taglineItems.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+
             <div className="space-y-5">
               {INFO_CARDS.map((card) => (
                 <div key={card.label} className="flex items-start gap-4 rounded-2xl border border-brand-100 bg-white p-6 shadow-soft">
@@ -39,7 +51,19 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wide text-brand-500">{card.label}</p>
-                    {card.href ? (
+                    {card.values ? (
+                      <div className="mt-1 flex flex-col gap-0.5">
+                        {card.values.map((p) => (
+                          <a
+                            key={p.raw}
+                            href={`tel:${p.raw}`}
+                            className="text-sm font-medium text-brand-900 hover:text-accent-600"
+                          >
+                            {p.display}
+                          </a>
+                        ))}
+                      </div>
+                    ) : card.href ? (
                       <a href={card.href} className="mt-1 block text-sm font-medium text-brand-900 hover:text-accent-600">
                         {card.value}
                       </a>

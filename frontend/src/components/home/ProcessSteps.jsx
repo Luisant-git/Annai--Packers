@@ -15,14 +15,14 @@ export default function ProcessSteps() {
         />
 
         <div className="relative mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="pointer-events-none absolute inset-x-0 top-10 z-0 hidden lg:block">
-            <div className="mx-[calc(12.5%+40px)] h-px bg-white/10" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden h-20 lg:block">
+            <div className="absolute left-0 right-0 top-1/2 mx-[calc(12.5%-12px)] h-px -translate-y-1/2 bg-white/10" />
             <motion.span
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-              className="absolute inset-y-0 left-0 right-0 mx-[calc(12.5%+40px)] h-px origin-left bg-gradient-to-r from-accent-400 to-accent-200"
+              className="absolute left-0 right-0 top-1/2 mx-[calc(12.5%-12px)] h-px -translate-y-1/2 origin-left bg-gradient-to-r from-accent-400 to-accent-200"
             />
           </div>
 

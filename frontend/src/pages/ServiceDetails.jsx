@@ -28,7 +28,7 @@ export default function ServiceDetails() {
       />
 
       <section className="py-24">
-        <div className="container-page grid grid-cols-1 gap-12 lg:grid-cols-3">
+        <div className="container-page grid grid-cols-1 gap-12 lg:grid-cols-3 lg:items-start">
           <div className="lg:col-span-2" data-aos="fade-up">
             {service.coverImage && (
               <img
@@ -46,6 +46,20 @@ export default function ServiceDetails() {
             <p className="mt-4 whitespace-pre-line text-base leading-relaxed text-brand-700/80">
               {service.description}
             </p>
+
+            {service.highlights?.length > 0 && (
+              <div className="mt-10 rounded-2xl border border-brand-100 bg-brand-50/50 p-8">
+                <h3 className="text-lg font-semibold text-brand-900">What's Included</h3>
+                <ul className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  {service.highlights.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-accent-500" />
+                      <span className="text-sm text-brand-800">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           <aside className="lg:col-span-1">

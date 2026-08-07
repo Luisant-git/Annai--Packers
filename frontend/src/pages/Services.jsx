@@ -15,6 +15,7 @@ export default function Services() {
         title="Our Services"
         subtitle="Complete moving and logistics solutions tailored to your needs."
         breadcrumb={[{ label: 'Services' }]}
+        compact
       />
 
       <section className="py-24">

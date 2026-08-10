@@ -5,6 +5,8 @@ import packingServices from '@/assets/chooseus-img4.jpg'
 import officeCorporateRelocation from '@/assets/img4.jpeg'
 import warehousingStorage from '@/assets/img1.jpeg'
 import loadingUnloading from '@/assets/img6.jpeg'
+import carTransportation from '@/assets/img3.jpeg'
+import exportPacking from '@/assets/img13.jpeg'
 
 export const SERVICES = [
   {
@@ -125,6 +127,40 @@ export const SERVICES = [
       'Flexible scheduling',
     ],
     order: 7,
+  },
+  {
+    id: 'car-transportation',
+    title: 'Car Transportation',
+    slug: 'car-transportation',
+    shortDesc: 'Safe, door-to-door car transport on enclosed carriers with full insurance cover.',
+    description:
+      'Relocating your car to a new city? Our dedicated car transportation service uses enclosed, GPS-tracked carriers and experienced drivers to move your vehicle safely without adding wear or mileage.\n\nEvery car is inspected and photographed before loading and after delivery, and covered by comprehensive transit insurance for complete peace of mind.',
+    icon: 'Car',
+    coverImage: carTransportation,
+    highlights: [
+      'Enclosed, GPS-tracked car carriers',
+      'Comprehensive transit insurance',
+      'Photographic condition report at pickup & delivery',
+      'Door-to-door scheduling',
+    ],
+    order: 8,
+  },
+  {
+    id: 'export-packing',
+    title: 'Export Packing',
+    slug: 'export-packing',
+    shortDesc: 'Export-grade wooden crating and packing that meets international shipping standards.',
+    description:
+      'Shipping goods overseas requires packing that can withstand long transit times, handling and customs inspection. Our export packing team builds ISPM-15 compliant wooden crates and uses moisture-resistant, shock-absorbent materials for fragile and high-value cargo.\n\nWe prepare shipments for sea and air freight and coordinate with your freight forwarder to keep documentation and packing specifications aligned.',
+    icon: 'Package',
+    coverImage: exportPacking,
+    highlights: [
+      'ISPM-15 compliant wooden crating',
+      'Moisture-resistant, shock-absorbent packing',
+      'Sea & air freight ready',
+      'Freight forwarder coordination',
+    ],
+    order: 9,
   },
 ]
 

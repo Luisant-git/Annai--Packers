@@ -8,6 +8,7 @@ import NotFound from '@/pages/NotFound'
 import { SERVICES, getServiceBySlug } from '@/data/services'
 import { getIcon } from '@/utils/iconMap'
 import { COMPANY } from '@/utils/constants'
+import { getContactHref, isWaMe } from '@/utils/contactLinks'
 
 export default function ServiceDetails() {
   const { slug } = useParams()

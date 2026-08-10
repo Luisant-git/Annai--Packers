@@ -16,6 +16,7 @@ import {
   FileCheck2,
   Award,
   Star,
+  Car,
 } from 'lucide-react'
 
 const ICON_MAP = {
@@ -36,6 +37,7 @@ const ICON_MAP = {
   FileCheck2,
   Award,
   Star,
+  Car,
 }
 
 export const getIcon = (name) => ICON_MAP[name] || Package

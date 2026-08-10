@@ -11,19 +11,19 @@ export const COMPANY = {
     'All Over India Services',
   ],
   // Primary number — used for all single click-to-call buttons (Header, Hero, CTA bands, floating action).
-  phone: '+91 89408 87555',
-  phoneRaw: '+918940887555',
+  phone: '+91 87541 27755',
+  phoneRaw: '+918754127755',
   // Full list — used wherever all numbers should be visible (Top Bar, Footer, Contact page).
   phones: [
-    { display: '+91 89408 87555', raw: '+918940887555' },
     { display: '+91 87541 27755', raw: '+918754127755' },
+    { display: '+91 89408 87555', raw: '+918940887555' },
     { display: '+91 94872 17415', raw: '+919487217415' },
   ],
-  whatsapp: '+918940887555',
+  whatsapp: '+918754127755',
   email: 'annaipackersrini56@gmail.com',
   address: ADDRESS,
   hours: 'Mon - Sun: 8:00 AM - 9:00 PM',
-  mapEmbedUrl: `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`,
+  mapEmbedUrl: `https://www.google.com/maps?q=${encodeURIComponent(`${ADDRESS}, India`)}&z=17&output=embed`,
   social: {
     facebook: 'https://facebook.com/',
     instagram: 'https://instagram.com/',
@@ -53,9 +53,9 @@ export const FOOTER_LINKS = {
 }
 
 export const TRUST_STATS = [
-  { label: 'Years of Experience', value: 15, suffix: '+', icon: 'Award' },
-  { label: 'Successful Moves', value: 12000, suffix: '+', icon: 'Truck' },
-  { label: 'Cities Covered', value: 120, suffix: '+', icon: 'MapPin' },
+  { label: 'Happy Clients', value: 800, suffix: '+', icon: 'Users' },
+  { label: 'Years of Experience', value: 12, suffix: '+', icon: 'Award' },
+  { label: 'Successful Moves', value: 15000, suffix: '+', icon: 'Truck' },
   { label: 'Customer Rating', value: 4.8, suffix: '/5', icon: 'Star' },
 ]
 
@@ -127,6 +127,8 @@ export const SERVICE_TYPES = [
   'Packing Services',
   'International Relocation',
   'Loading & Unloading',
+  'Car Transportation',
+  'Export Packing',
   'Other',
 ]
 

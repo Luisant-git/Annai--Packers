@@ -15,7 +15,7 @@ export default function WhyChooseUs() {
               className="aspect-[4/5] w-full max-w-md rounded-3xl object-cover shadow-card"
             />
             <div className="absolute -bottom-6 -right-4 rounded-2xl bg-white p-6 shadow-card sm:-right-8">
-              <p className="font-display text-3xl font-bold text-accent-500">15+</p>
+              <p className="font-display text-3xl font-bold text-accent-500">12+</p>
               <p className="text-sm text-brand-700/60">Years of trusted service</p>
             </div>
           </div>

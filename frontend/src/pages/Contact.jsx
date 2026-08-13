@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, ExternalLink } from 'lucide-react'
 import SeoHead from '@/components/seo/SeoHead'
 import PageHero from '@/components/common/PageHero'
 import ContactForm from '@/components/forms/ContactForm'
@@ -79,6 +79,14 @@ export default function Contact() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
+              <a
+                href={COMPANY.mapDirectionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 border-t border-brand-100 bg-white py-3 text-sm font-medium text-brand-900 transition-colors hover:text-accent-600"
+              >
+                <ExternalLink size={15} /> Open in Google Maps
+              </a>
             </div>
           </div>
 

@@ -1,12 +1,12 @@
-import householdShifting from '@/assets/hero-banner2.webp'
-import vehicleTransport from '@/assets/hero-banner1.webp'
-import internationalRelocation from '@/assets/hero-banner3.webp'
-import packingServices from '@/assets/chooseus-img4.jpg'
+import householdShifting from '@/assets/packers.jpeg'
+import vehicleTransport from '@/assets/img3.jpeg'
+import internationalRelocation from '@/assets/img15.jpeg'
+import packingServices from '@/assets/img12.jpeg'
 import officeCorporateRelocation from '@/assets/img4.jpeg'
-import warehousingStorage from '@/assets/img1.jpeg'
-import loadingUnloading from '@/assets/img6.jpeg'
-import carTransportation from '@/assets/img3.jpeg'
-import exportPacking from '@/assets/img13.jpeg'
+import warehousingStorage from '@/assets/img11.jpeg'
+import loadingUnloading from '@/assets/img7.jpeg'
+import carTransportation from '@/assets/img13.jpeg'
+import exportPacking from '@/assets/img17.jpeg'
 
 export const SERVICES = [
   {

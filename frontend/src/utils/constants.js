@@ -1,4 +1,7 @@
 const ADDRESS = '17/1, Devi Poorani Nagar, Kalapatti, Coimbatore – 641048'
+// Plain-hyphen, fully-qualified form used only for the map query — the "–" (en dash) and missing
+// state/country in ADDRESS were causing Google's free geocoder to mis-resolve the pin to an unrelated place.
+const MAP_ADDRESS = '17/1, Devi Poorani Nagar, Kalapatti, Coimbatore - 641048, Tamil Nadu, India'
 
 export const COMPANY = {
   name: 'Annai Packers & Movers',
@@ -23,7 +26,8 @@ export const COMPANY = {
   email: 'annaipackersrini56@gmail.com',
   address: ADDRESS,
   hours: 'Mon - Sun: 8:00 AM - 9:00 PM',
-  mapEmbedUrl: `https://www.google.com/maps?q=${encodeURIComponent(`${ADDRESS}, India`)}&z=17&output=embed`,
+  mapEmbedUrl: `https://www.google.com/maps?q=${encodeURIComponent(MAP_ADDRESS)}&z=17&output=embed`,
+  mapDirectionsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAP_ADDRESS)}`,
   social: {
     facebook: 'https://facebook.com/',
     instagram: 'https://instagram.com/',

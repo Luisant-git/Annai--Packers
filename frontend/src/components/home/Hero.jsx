@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ShieldCheck, Clock, Users, Star, PhoneCall } from 'lucide-react'
 import Button from '@/components/common/Button'
-import heroBanner1 from '@/assets/hero-banner1.webp'
-import heroBanner2 from '@/assets/hero-banner2.webp'
-import heroBanner3 from '@/assets/hero-banner3.webp'
+import fleetInWarehouse from '@/assets/img5.jpeg'
+import familyHandover from '@/assets/img8.jpeg'
+import movingSofa from '@/assets/img2.jpeg'
 import { COMPANY } from '@/utils/constants'
 import { getContactHref, isWaMe } from '@/utils/contactLinks'
 
-const SLIDES = [heroBanner1, heroBanner2, heroBanner3]
+const SLIDES = [fleetInWarehouse, familyHandover, movingSofa]
 const SLIDE_DURATION = 5000
 
 const TRUST_INDICATORS = [

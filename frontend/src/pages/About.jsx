@@ -6,7 +6,7 @@ import TrustBar from '@/components/home/TrustBar'
 import WhyChooseUs from '@/components/home/WhyChooseUs'
 import CtaBand from '@/components/home/CtaBand'
 import { COMPANY } from '@/utils/constants'
-import storyImg from '@/assets/hero-banner2.webp'
+import storyImg from '@/assets/img1.jpeg'
 
 const VALUES = [
   {

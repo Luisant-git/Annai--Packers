@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ChevronRight } from 'lucide-react'
-import bannerBg from '@/assets/hero-banner1.webp'
+import bannerBg from '@/assets/img6.jpeg'
 
 export default function PageHero({ title, subtitle, breadcrumb = [], compact = false }) {
   return (

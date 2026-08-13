@@ -25,21 +25,9 @@ function TopContactBar() {
           </a>
           <div className="flex items-center gap-2">
             <Phone size={13} className="shrink-0 text-accent-400" />
-            {COMPANY.phones.map((p, i) => {
-              const href = getContactHref(p.raw)
-              return (
-                <span key={p.raw} className="flex items-center gap-2">
-                  <a
-                    href={href}
-                    className="transition-colors hover:text-accent-400"
-                    {...(isWaMe(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  >
-                    {p.display}
-                  </a>
-                  {i < COMPANY.phones.length - 1 && <span className="text-brand-500">/</span>}
-                </span>
-              )
-            })}
+            <a href={`tel:${COMPANY.phoneRaw}`} className="transition-colors hover:text-accent-400">
+              {COMPANY.phone}
+            </a>
           </div>
         </div>
         <div className="flex items-center gap-3">

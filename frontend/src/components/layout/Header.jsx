@@ -6,7 +6,6 @@ import { COMPANY, NAV_LINKS } from '@/utils/constants'
 import { getContactHref, isWaMe } from '@/utils/contactLinks'
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from '@/components/common/SocialIcons'
 import Button from '@/components/common/Button'
-import logo from '@/assets/logo.webp'
 
 const TOP_BAR_SOCIALS = [
   { key: 'facebook', Icon: FacebookIcon },
@@ -75,7 +74,7 @@ export default function Header() {
       >
       <div className="container-page flex h-[72px] items-center justify-between">
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="Annai Packers & Movers" className="h-11 w-auto sm:h-12" />
+          <img src="/logo.webp" alt="Annai Packers & Movers" className="h-11 w-auto sm:h-12" />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">

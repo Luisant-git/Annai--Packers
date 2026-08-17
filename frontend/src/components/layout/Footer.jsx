@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 import { COMPANY, FOOTER_LINKS, SERVICE_TYPES } from '@/utils/constants'
 import { getContactHref, isWaMe } from '@/utils/contactLinks'
-import logoDark from '@/assets/logo-dark.webp'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -11,7 +10,7 @@ export default function Footer() {
     <footer className="bg-brand-950 text-brand-100">
       <div className="container-page grid grid-cols-1 gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <img src={logoDark} alt="Annai Packers & Movers" className="h-11 w-auto" />
+          <img src="/logo-dark.webp" alt="Annai Packers & Movers" className="h-11 w-auto" />
           <p className="mt-4 text-sm leading-relaxed text-brand-200">
             {COMPANY.tagline} Trusted packing and moving partner for households and businesses across the
             country, delivering safe and on-time relocations since {COMPANY.founded}.

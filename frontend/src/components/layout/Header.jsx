@@ -74,7 +74,11 @@ export default function Header() {
       >
       <div className="container-page flex h-[72px] items-center justify-between">
         <Link to="/" className="flex items-center">
-          <img src="/logo.webp" alt="Annai Packers & Movers" className="h-11 w-auto sm:h-12" />
+          <img
+            src="/logo.webp"
+            alt="Annai Packers & Movers"
+            className="h-11 w-auto border-0 bg-transparent align-middle outline-none sm:h-12"
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
